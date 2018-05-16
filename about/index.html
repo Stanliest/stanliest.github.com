@@ -4,7 +4,14 @@ title: about Stanley Liu
 ---
 	<div class="about">
 		<h1>About</h1>
-		<p> I'm a 3rd-year software engineering student at McMaster University.</p>
+		<p> I'm a 3rd-year software engineering student at <button onclick= "showUni()">show</button>.</p>
+		
+		<p id="demo"></p>
+		<script>
+			function showUni() {
+			    document.getElementById("demo").innerHTML = "McMaster University";
+			}
+		</script>
 		
 		<ul class="contacts">
 			<li><a href="https://www.linkedin.com/in/liu-stanley">LinkedIn</a></li>
