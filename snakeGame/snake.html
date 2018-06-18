@@ -93,7 +93,7 @@ title: Snake game
             loop();
         }
 
-        function init {
+        function init() {
             grid.init(EMPTY, COLS, ROWS);
             var sp = {x:Math.floor(COLS/2), y:ROW-1}; // stop position
             snake.init(UP, sp.x, sp.y);
