@@ -76,6 +76,7 @@ function main() {
     die = false;
     frames = 0;
     keystate = {};
+    document.getElementById("startBtn").disabled = true; // disable start button after click
 
     canvas = document.createElement("canvas");
     canvas.width = COLS*20;
@@ -221,6 +222,3 @@ function draw() {
         keystate[evt.keyCode] = false; // disable key
     }
 }
-
-
-main(); // first game
