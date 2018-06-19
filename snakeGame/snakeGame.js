@@ -73,16 +73,16 @@ function setFood() {
 var canvas, ctx, keystate, frames;
 
 function main() {
+    die = false;
+    frames = 0;
+    keystate = {};
+
     canvas = document.createElement("canvas");
     canvas.width = COLS*20;
     canvas.height = ROWS*20;
     ctx = canvas.getContext("2d");
-    ctx2 = canvas.getContext("2d");
     document.body.appendChild(canvas);
     
-    frames = 0;
-    keystate = {};
-
     // keeps track of the keyboard input
     document.addEventListener("keydown", function(evt) {
         keystate[evt.keyCode] = true;
@@ -93,6 +93,11 @@ function main() {
 
     init();
     loop();
+}
+
+function canvasRestart() {
+    document.body.removeChild(canvas);
+    main();
 }
 
 function init() {
@@ -203,11 +208,12 @@ function draw() {
     ctx.fillText("Score: " + score, 10, canvas.height - 10);
 
     if (die) {
-        ctx2.font = "35px Arial";
-        ctx2.fillStyle = "#000";
-        ctx2.fillText("Game over", 170, 260);
+        ctx.font = "35px Arial";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Game over", 170, 260);
+        keystate[evt.keyCode] = false; // disable key
     }
 }
 
 
-main();
+main(); // first game
