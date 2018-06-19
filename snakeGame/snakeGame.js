@@ -1,7 +1,7 @@
 // constants
 var COLS=26, ROWS=26
 // IDs
-var EMPTY=0, SNAKE=1, FRUIT=2;
+var EMPTY=0, SNAKE=1, FRUIT=2, POISON=3;
 // directions
 var LEFT=0, UP=1, RIGHT=2, DOWN=3;
 // keyboard direction
@@ -69,6 +69,19 @@ function setFood() {
     grid.set(FRUIT, randpos.x, randpos.y);
 }
 
+function setPoison() {
+    var empty = [];
+    for (var x=0; x<grid.width; x++) {
+        for (var y=0; y<grid.height; y++) {
+            if (grid.get(x,y) == EMPTY) {
+                empty.push({x:x, y:y});
+            }
+        }
+    }
+    var randpos = empty[Math.floor(Math.random()*empty.length)];
+    grid.set(POISON, randpos.x, randpos.y);
+}
+
 // Game objects
 var canvas, ctx, keystate, frames;
 
@@ -115,6 +128,7 @@ function init() {
     snake.init(UP, sp.x, sp.y);
     grid.set(SNAKE, sp.x, sp.y);
     setFood();
+    setPoison();
 }
 
 function loop() {
@@ -168,16 +182,16 @@ function update() {
     // checks all gameover conditions
     if (0 > nx || nx > grid.width-1  ||
         0 > ny || ny > grid.height-1 ||
-        grid.get(nx, ny) === SNAKE
-    ) {
+        grid.get(nx, ny) === SNAKE ||
+        grid.get(nx, ny) === POISON) {
         return gameOver();
-
     }
     // check wheter the new position are on the fruit item
     if (grid.get(nx, ny) === FRUIT) {
         // increment the score and sets a new fruit position
         score++;
         setFood();
+        setPoison();
     } else {
         // take out the first item from the snake queue i.e
         // the tail and remove id from grid
@@ -207,6 +221,8 @@ function draw() {
                 case FRUIT:
                     ctx.fillStyle = "#f00";
                     break;
+                case POISON:
+                    ctx.fillStyle = "#800080";
             }
             ctx.fillRect(x*tw, y*th, tw, th);
         }
