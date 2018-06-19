@@ -78,10 +78,17 @@ function main() {
     keystate = {};
 
     canvas = document.createElement("canvas");
-    canvas.width = COLS*15;
-    canvas.height = ROWS*15;
+    canvas.width = COLS*20;
+    canvas.height = ROWS*20;
     ctx = canvas.getContext("2d");
     document.body.appendChild(canvas);
+
+    // disable page scrolling with arrow keys
+    window.addEventListener("keydown", function(e) {
+        if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+    }, false);
     
     // keeps track of the keyboard input
     document.addEventListener("keydown", function(evt) {
@@ -210,7 +217,7 @@ function draw() {
     if (die) {
         ctx.font = "35px Arial";
         ctx.fillStyle = "#000";
-        ctx.fillText("Game over", 110, 200);
+        ctx.fillText("Game over", 170, 270);
         keystate[evt.keyCode] = false; // disable key
     }
 }
