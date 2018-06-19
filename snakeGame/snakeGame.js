@@ -78,8 +78,8 @@ function main() {
     keystate = {};
 
     canvas = document.createElement("canvas");
-    canvas.width = COLS*20;
-    canvas.height = ROWS*20;
+    canvas.width = COLS*15;
+    canvas.height = ROWS*15;
     ctx = canvas.getContext("2d");
     document.body.appendChild(canvas);
     
@@ -210,7 +210,7 @@ function draw() {
     if (die) {
         ctx.font = "35px Arial";
         ctx.fillStyle = "#000";
-        ctx.fillText("Game over", 170, 260);
+        ctx.fillText("Game over", 110, 200);
         keystate[evt.keyCode] = false; // disable key
     }
 }
