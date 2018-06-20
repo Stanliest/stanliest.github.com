@@ -7,6 +7,8 @@ var LEFT=0, UP=1, RIGHT=2, DOWN=3;
 // keyboard direction
 var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40;
 var die = false;
+// var image = new image();
+// image.src = "img/fruit.jpg";
 
 var grid = {
     width: null,
@@ -158,7 +160,7 @@ function update() {
         snake.direction = DOWN;
     }
     
-    // each five frames update the game state.
+    // each ten frames update the game state.
     if (frames%10 === 0) {
         // pop the last element from the snake queue i.e. the
         // head
@@ -206,23 +208,31 @@ function update() {
 }
 
 function draw() {
-   var tw = canvas.width/grid.width;
-   var th = canvas.height/grid.height;
+    var tw = canvas.width/grid.width;
+    var th = canvas.height/grid.height;
 
-   for (var x=0; x<grid.width; x++) {
+    
+
+    for (var x=0; x<grid.width; x++) {
         for (var y=0; y<grid.height; y++) {
             switch(grid.get(x,y)) {
                 case EMPTY:
-                    ctx.fillStyle = "#fff";
+                    ctx.fillStyle = "#00e600";
                     break;
                 case SNAKE:
-                    ctx.fillStyle = "#0ff";
+                    ctx.fillStyle = "blue";
                     break;
                 case FRUIT:
-                    ctx.fillStyle = "#f00";
+                    ctx.fillStyle = "red";
+                    // ctx.fillStyle = ctx.createPattern(image, "no-repeat");
+
+                    // var fruit = document.getElementById("apple");
+                    // var pat = ctx.createPattern(fruit, "no-repeat");
+                    // ctx.fillStyle = pat;
+                    // ctx.fill;
                     break;
                 case POISON:
-                    ctx.fillStyle = "#800080";
+                    ctx.fillStyle = "violet";
             }
             ctx.fillRect(x*tw, y*th, tw, th);
         }
@@ -232,8 +242,12 @@ function draw() {
     ctx.fillText("Score: " + score, 10, canvas.height - 10);
 
     if (die) {
+        var gradient=ctx.createLinearGradient(200,200,300,300);
+        gradient.addColorStop("0","magenta");
+        gradient.addColorStop("0.5","blue");
+        gradient.addColorStop("1.0","red");
         ctx.font = "35px Arial";
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = gradient;
         ctx.fillText("Game over", 170, 270);
         keystate[evt.keyCode] = false; // disable key
     }
