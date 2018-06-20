@@ -5,23 +5,44 @@ title: Snake game
 
     <style>
     canvas {
-        display: block;
-        /* position: absolute; */
-        border: 2px solid #000;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
+        /* display: block; */
+        position: absolute;
+        top:240; left:10;
+        border: 2px solid rgba(27, 226, 9, 0.781);
+        
     }
+
+    /* table.GeneratedTable {
+        position: absolute;
+        top:240; left: 600px;
+        width: 10cm;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #283cff;
+        border-style: solid;
+        color: #223dff;
+    }
+
+    table.GeneratedTable td, table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #283cff;
+        border-style: solid;
+        padding: 0.5cm;
+    }
+
+    table.GeneratedTable thead {
+        background-color: #97daff;
+    } */
     </style>
 
     <div class="snakeGame">
-        <h1>Snake Game</h1>
+        <h1>Snake Game</h1>   
         <p> Learning from a <a href="https://www.youtube.com/watch?v=uU5YPIvJ24Y">youtube video</a>,
         adding some more features.</p>
         <p> Navigate using arrow keys. Red: fruit, purple: poison</p>
         <p> Hint: Don't eat poison..</p>
+
 
         <!-- <p><img id="apple" src="img/fruit.jpg" style="float:left"> Fruit</p> -->
         
@@ -30,4 +51,47 @@ title: Snake game
         <button id="restartBtn" onclick="canvasRestart()">Restart</button>
         <button id="startBtn" onclick="main()">Start</button>
 
+        <!-- <table class="GeneratedTable">
+                <thead>
+                  <tr>
+                    <th>Score Leader</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table> -->
+   
     </div>
