@@ -1,15 +1,23 @@
----
-layout: default
-title: Snake game
----
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Snake Game </title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+  </head>
+  <body>
+        <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/snakeGame">Snake Game</a></li>
+        </ul>
+        </nav>
     <style>
     canvas {
         /* display: block; */
         position: absolute;
         top:240; left:10;
-        border: 2px solid rgba(27, 226, 9, 0.781);
-        
+        border: 2px solid rgba(27, 226, 9, 0.781);   
     }
 
     /* table.GeneratedTable {
@@ -43,14 +51,14 @@ title: Snake game
         <p> Navigate using arrow keys. Red: fruit, purple: poison</p>
         <p> Hint: Don't eat poison..</p>
 
-
         <!-- <p><img id="apple" src="img/fruit.jpg" style="float:left"> Fruit</p> -->
         
         <script src="snakeGame.js"></script>
 
         <button id="restartBtn" onclick="canvasRestart()">Restart</button>
         <button id="startBtn" onclick="main()">Start</button>
-
+        <div style="position: absolute; margin-top:0px; margin-left:1100px;"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3223899&c=9672010" alt="AmazingCounters.com"></a></div>
+        
         <!-- <table class="GeneratedTable">
                 <thead>
                   <tr>
@@ -95,3 +103,6 @@ title: Snake game
               </table> -->
    
     </div>
+</body>
+
+</html>
