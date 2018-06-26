@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <title> Snake Game </title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
   </head>
   <body>
         <nav>
@@ -19,90 +18,58 @@
         top:240; left:10;
         border: 2px solid rgba(27, 226, 9, 0.781);   
     }
-
-    /* table.GeneratedTable {
-        position: absolute;
-        top:240; left: 600px;
-        width: 10cm;
-        background-color: #ffffff;
-        border-collapse: collapse;
-        border-width: 2px;
-        border-color: #283cff;
-        border-style: solid;
-        color: #223dff;
-    }
-
-    table.GeneratedTable td, table.GeneratedTable th {
-        border-width: 2px;
-        border-color: #283cff;
-        border-style: solid;
-        padding: 0.5cm;
-    }
-
-    table.GeneratedTable thead {
-        background-color: #97daff;
-    } */
     </style>
 
     <div class="snakeGame">
         <h1>Snake Game</h1>   
-        <p> Learning from a <a href="https://www.youtube.com/watch?v=uU5YPIvJ24Y">youtube video</a>,
-        adding some more features.</p>
+        
         <p> Navigate using arrow keys. Red: fruit, purple: poison</p>
         <p> Hint: Don't eat poison..</p>
 
         <!-- <p><img id="apple" src="img/fruit.jpg" style="float:left"> Fruit</p> -->
-        
+
+        <!-- <script language="javascript" type="text/javascript" src="lib/p5/p5.js"></script> -->
+        <!-- <script language="javascript" type="text/javascript" src="lib/p5/p5.d.ts"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
+
+        <script>
+          // initialize firebase
+          var config = {
+            apiKey: "AIzaSyA_nMAjQGfaP24GRSytt6QriVkx4qiP8EU",
+            authDomain: "snakegame-a2625.firebaseapp.com",
+            databaseURL: "https://snakegame-a2625.firebaseio.com",
+            projectId: "snakegame-a2625",
+            storageBucket: "snakegame-a2625.appspot.com",
+            messagingSenderId: "238509954340"
+          };
+          firebase.initializeApp(config);
+        </script>
+
         <script src="snakeGame.js"></script>
 
         <button id="restartBtn" onclick="canvasRestart()">Restart</button>
         <button id="startBtn" onclick="main()">Start</button>
-        <div style="position: absolute; margin-top:0px; margin-left:600px;"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3223899&c=9672010" alt="AmazingCounters.com"></a></div>
+      
+        <!-- score list -->
+        <div style="position: absolute; margin-top:30px; margin-left:550px;">
+          <p><ol id="scorelist"></ol></p>
+        </div>
         
-        <!-- <table class="GeneratedTable">
-                <thead>
-                  <tr>
-                    <th>Score Leader</th>
-                    <th>Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table> -->
-   
+        <!-- counter -->
+        <div style="position: absolute; margin-top:0px; margin-left:600px;">
+          <a href="http://www.amazingcounters.com">
+            <img border="0" src="http://cc.amazingcounters.com/counter.php?i=3223899&c=9672010" alt="AmazingCounters.com">
+          </a>
+        </div>
+
+        <p style="position: absolute; margin-top:540px; margin-left:10px;"> 
+            Based on a <a href="https://www.youtube.com/watch?v=uU5YPIvJ24Y">youtube video</a>
+        </p>
+        
     </div>
+
+
 </body>
 
 </html>

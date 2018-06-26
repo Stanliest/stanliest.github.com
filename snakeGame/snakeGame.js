@@ -7,8 +7,10 @@ var LEFT=0, UP=1, RIGHT=2, DOWN=3;
 // keyboard direction
 var KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40;
 var die = false;
-// var image = new image();
-// image.src = "img/fruit.jpg";
+// show score
+var database = firebase.database();
+var ref = database.ref("scores");
+ref.on("value", getData, errData);
 
 var grid = {
     width: null,
@@ -88,6 +90,7 @@ function setPoison() {
 var canvas, ctx, keystate, frames;
 
 function main() {
+    
     die = false;
     frames = 0;
     keystate = {};
@@ -116,6 +119,40 @@ function main() {
 
     init();
     loop();
+}
+
+function getData(data) {
+    var scores = data.val();
+    var keys = Object.keys(scores);
+    console.log(keys);
+    for (var i=0; i<keys.length; i++) {
+        var k = keys[i];
+        var name = scores[k].name;
+        var score = scores[k].score;
+        console.log(name, score);
+        
+        var ol = document.getElementById("scorelist");
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(name + ": "));
+        li.appendChild(document.createTextNode(score));
+        ol.appendChild(li);
+
+    }
+}
+
+function errData(err) {
+    console.log("Error!");
+    console.log(err);
+}
+
+function submitScore() {
+    var data = {
+        name: "P1",
+        score: score
+    }
+    console.log(data);
+    var ref = database.ref("scores");
+    ref.push(data);
 }
 
 function canvasRestart() {
@@ -186,7 +223,12 @@ function update() {
         0 > ny || ny > grid.height-1 ||
         grid.get(nx, ny) === SNAKE ||
         grid.get(nx, ny) === POISON) {
-        return gameOver();
+            // remove last score list
+            var ul = document.getElementById("scorelist");
+            while(ul.firstChild) ul.removeChild(ul.firstChild);
+
+            submitScore();
+            return gameOver();
     }
     // check wheter the new position are on the fruit item
     if (grid.get(nx, ny) === FRUIT) {
@@ -237,7 +279,7 @@ function draw() {
             ctx.fillRect(x*tw, y*th, tw, th);
         }
     }
-    ctx.font = "10px Arial";
+    ctx.font = "15px Arial";
     ctx.fillStyle = "#000";
     ctx.fillText("Score: " + score, 10, canvas.height - 10);
 
