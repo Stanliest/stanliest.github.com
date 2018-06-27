@@ -3,6 +3,7 @@
   <head>
     <title> Snake Game </title>
   </head>
+
   <body>
         <nav>
         <ul>
@@ -11,12 +12,16 @@
           <li><a href="/snakeGame">Snake Game</a></li>
         </ul>
         </nav>
+
     <style>
     canvas {
-        /* display: block; */
-        position: absolute;
-        top:240; left:10;
-        border: 2px solid rgba(27, 226, 9, 0.781);   
+      position: absolute;
+      top:240; left:10;
+      border: 2px solid rgba(27, 226, 9, 0.781);   
+    }
+    /* display top 10 score leaders */
+    #scorelist li:nth-of-type(1n+11) {
+      display: none;
     }
     </style>
 
@@ -25,13 +30,10 @@
         
         <p> Navigate using arrow keys. Red: fruit, purple: poison</p>
         <p> Hint: Don't eat poison..</p>
-
-        <!-- <p><img id="apple" src="img/fruit.jpg" style="float:left"> Fruit</p> -->
-
-        <!-- <script language="javascript" type="text/javascript" src="lib/p5/p5.js"></script> -->
-        <!-- <script language="javascript" type="text/javascript" src="lib/p5/p5.d.ts"></script> -->
+      
         <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <script>
           // initialize firebase

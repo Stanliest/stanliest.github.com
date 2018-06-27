@@ -12,6 +12,8 @@ var database = firebase.database();
 var ref = database.ref("scores");
 ref.on("value", getData, errData);
 
+
+
 var grid = {
     width: null,
     height: null,
@@ -138,6 +140,7 @@ function getData(data) {
         ol.appendChild(li);
 
     }
+
 }
 
 function errData(err) {
