@@ -5,13 +5,13 @@
   </head>
 
   <body>
-        <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/snakeGame">Snake Game</a></li>
-        </ul>
-        </nav>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/snakeGame">Snake Game</a></li>
+      </ul>
+    </nav>
 
     <style>
     canvas {
@@ -20,8 +20,15 @@
       border: 2px solid rgba(27, 226, 9, 0.781);   
     }
     /* display top 10 score leaders */
+    #scorename li:nth-of-type(1n+11) {
+      display: none;
+    }
     #scorelist li:nth-of-type(1n+11) {
       display: none;
+    }    
+    /* remove bullet point */
+    ul {
+      list-style-type: none;
     }
     </style>
 
@@ -33,7 +40,7 @@
       
         <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
         <script>
           // initialize firebase
@@ -49,15 +56,26 @@
         </script>
 
         <script src="snakeGame.js"></script>
+        <script src="sortList.js"></script>
 
         <button id="restartBtn" onclick="canvasRestart()">Restart</button>
         <button id="startBtn" onclick="main()">Start</button>
       
-        <!-- score list -->
+        <!-- create score name -->
         <div style="position: absolute; margin-top:30px; margin-left:550px;">
-          <p><ol id="scorelist"></ol></p>
+          <p><ol id="scorename"></ol></p>
+        </div>
+        <!-- create score list -->
+        <div style="position: absolute; margin-top:30px; margin-left:630px;">
+          <p><ul id="scorelist"></ul></p>
         </div>
         
+        <script>
+          // hide scoreboard at the beginning
+          document.getElementById("scorename").style.display = "none";
+          document.getElementById("scorelist").style.display = "none";
+        </script>
+
         <!-- counter -->
         <div style="position: absolute; margin-top:0px; margin-left:600px;">
           <a href="http://www.amazingcounters.com">
@@ -65,6 +83,7 @@
           </a>
         </div>
 
+        <!-- reference -->
         <p style="position: absolute; margin-top:540px; margin-left:10px;"> 
             Based on a <a href="https://www.youtube.com/watch?v=uU5YPIvJ24Y">youtube video</a>
         </p>
@@ -72,6 +91,6 @@
     </div>
 
 
-</body>
+  </body>
 
 </html>

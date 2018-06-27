@@ -12,8 +12,6 @@ var database = firebase.database();
 var ref = database.ref("scores");
 ref.on("value", getData, errData);
 
-
-
 var grid = {
     width: null,
     height: null,
@@ -92,11 +90,14 @@ function setPoison() {
 var canvas, ctx, keystate, frames;
 
 function main() {
-    
+    document.getElementById("scorename").style.display = "block";
+    document.getElementById("scorelist").style.display = "block";
+    sortList();
     die = false;
     frames = 0;
     keystate = {};
-    document.getElementById("startBtn").disabled = true; // disable start button after click
+    // disable start button after click
+    document.getElementById("startBtn").disabled = true;
 
     canvas = document.createElement("canvas");
     canvas.width = COLS*20;
@@ -118,7 +119,7 @@ function main() {
     document.addEventListener("keyup", function(evt) {
          delete keystate[evt.keyCode];
     });
-
+    
     init();
     loop();
 }
@@ -126,18 +127,22 @@ function main() {
 function getData(data) {
     var scores = data.val();
     var keys = Object.keys(scores);
-    console.log(keys);
+    // console.log(keys);
     for (var i=0; i<keys.length; i++) {
         var k = keys[i];
         var name = scores[k].name;
         var score = scores[k].score;
         console.log(name, score);
         
-        var ol = document.getElementById("scorelist");
+        var ol = document.getElementById("scorename");
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(name + ": "));
-        li.appendChild(document.createTextNode(score));
+        li.appendChild(document.createTextNode(name+":"));
         ol.appendChild(li);
+
+        var ul = document.getElementById("scorelist");
+        var li2 = document.createElement("li");
+        li2.appendChild(document.createTextNode(score));
+        ul.appendChild(li2);
 
     }
 
@@ -148,9 +153,9 @@ function errData(err) {
     console.log(err);
 }
 
-function submitScore() {
+function submitScore(name) {
     var data = {
-        name: "P1",
+        name: name,
         score: score
     }
     console.log(data);
@@ -183,6 +188,7 @@ function loop() {
 function gameOver() {
     clearInterval(this.interval);
     die = true;
+    sortList();
 }
 
 function update() {
@@ -226,11 +232,20 @@ function update() {
         0 > ny || ny > grid.height-1 ||
         grid.get(nx, ny) === SNAKE ||
         grid.get(nx, ny) === POISON) {
-            // remove last score list
-            var ul = document.getElementById("scorelist");
+            // remove last score list so when the game restart, scores don't stack up
+            var ul = document.getElementById("scorename");
             while(ul.firstChild) ul.removeChild(ul.firstChild);
 
-            submitScore();
+            var ul2 = document.getElementById("scorelist");
+            while(ul2.firstChild) ul2.removeChild(ul2.firstChild);
+
+            // put the pop up here ask for name, then save the input
+            var name = prompt("Please enter your name to save the score:");
+            if (name == null || name == "") {
+                txt = "User cancelled the prompt.";
+            }
+
+            submitScore(name);
             return gameOver();
     }
     // check wheter the new position are on the fruit item
