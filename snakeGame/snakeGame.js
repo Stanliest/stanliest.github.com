@@ -90,6 +90,7 @@ function setPoison() {
 var canvas, ctx, keystate, frames;
 
 function main() {
+    // show scoreboard
     document.getElementById("scorename").style.display = "block";
     document.getElementById("scorelist").style.display = "block";
     sortList();
@@ -132,7 +133,7 @@ function getData(data) {
         var k = keys[i];
         var name = scores[k].name;
         var score = scores[k].score;
-        console.log(name, score);
+        // console.log(name, score);
         
         var ol = document.getElementById("scorename");
         var li = document.createElement("li");
@@ -158,7 +159,7 @@ function submitScore(name) {
         name: name,
         score: score
     }
-    console.log(data);
+    // console.log(data);
     var ref = database.ref("scores");
     ref.push(data);
 }
@@ -239,14 +240,14 @@ function update() {
             var ul2 = document.getElementById("scorelist");
             while(ul2.firstChild) ul2.removeChild(ul2.firstChild);
 
+            // put'Game over' message here
+
             // put the pop up here ask for name, then save the input
             var name = prompt("Please enter your name to save the score:");
-            if (name == null || name == "") {
-                txt = "User cancelled the prompt.";
-            }
-
             submitScore(name);
+            sortList();
             return gameOver();
+            
     }
     // check wheter the new position are on the fruit item
     if (grid.get(nx, ny) === FRUIT) {
@@ -308,7 +309,8 @@ function draw() {
         gradient.addColorStop("1.0","red");
         ctx.font = "35px Arial";
         ctx.fillStyle = gradient;
-        ctx.fillText("Amazing!", 170, 270);
+        ctx.fillText("GAME OVER", 150, 270);
+        
         keystate[evt.keyCode] = false; // disable key
     }
 }
