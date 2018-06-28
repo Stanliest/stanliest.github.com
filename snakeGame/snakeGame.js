@@ -137,7 +137,7 @@ function getData(data) {
         
         var ol = document.getElementById("scorename");
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(name+":"));
+        li.appendChild(document.createTextNode(name));
         ol.appendChild(li);
 
         var ul = document.getElementById("scorelist");
