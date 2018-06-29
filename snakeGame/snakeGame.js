@@ -309,7 +309,7 @@ function draw() {
         gradient.addColorStop("1.0","red");
         ctx.font = "35px Arial";
         ctx.fillStyle = gradient;
-        ctx.fillText("GAME OVER", 150, 270);
+        ctx.fillText("Amazing", 170, 270);
         
         keystate[evt.keyCode] = false; // disable key
     }
