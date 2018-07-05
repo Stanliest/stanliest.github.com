@@ -243,7 +243,7 @@ function update() {
             // put'Game over' message here
 
             // put the pop up here ask for name, then save the input
-            var name = prompt("Please enter your name to save the score:");
+            var name = document.getElementById("textbox").value;
             submitScore(name);
             sortList();
             return gameOver();

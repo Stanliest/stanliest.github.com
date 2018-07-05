@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title> Snake Game </title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-  </head>
-
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/snakeGame">Snake Game</a></li>
-      </ul>
-    </nav>
+---
+layout: default
+title: Learn React
+---
 
     <style>
     canvas {
@@ -31,7 +20,6 @@
     ul { list-style-type: none; }
 
     li { margin: 10px 0; }
-    li2 { margin: 3px 0; }
     
     </style>
 
@@ -87,14 +75,19 @@
           </a>
         </div>
 
+        <div style="position: absolute; margin-top:0px; margin-left:750px;">
+          <form action=name>
+            <label for="textbox">Your name:</label>
+            <br>
+            <input type="text" id="textbox" required minlength="1" maxlength="20" placeholder="1 to 20 characters long"/>
+            <span class="validity"></span>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
         <!-- reference -->
         <p style="position: absolute; margin-top:540px; margin-left:10px;"> 
             Based on a <a href="https://www.youtube.com/watch?v=uU5YPIvJ24Y">youtube video</a>
         </p>
         
     </div>
-
-
-  </body>
-
-</html>
