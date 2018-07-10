@@ -1,17 +1,29 @@
 <label>Server Name</label>
+<!-- This input does not use two way binding -->
 <input
   type="text"
   class="form-control"
   (input)="onUpdateServerName($event)">
+<!-- This input use two way binding -->
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName">
 
-<p>{{ serverName }}</p>
+<!-- <p>{{ serverName }}</p> -->
 
-<button class="btn btn-primary" 
-[disabled]="!allowNewServer"
-(click)="onCreateServer()">Add Server</button>
+<button 
+  class="btn btn-primary" 
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
 
 <!-- <p>{{ allowNewServer }}</p> -->
-<p>{{ serverCreationStatus }}</p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<!-- Use ngIf to output data conditionally -->
+<p *ngIf="serverCreated">{{ serverName }} server is created!</p>
+<p *ngIf="!serverCreated">No server is created!</p>
+
 
 <p>
   The button changes from disabled to abled is using <b>property binding</b> to output data. 
@@ -27,5 +39,12 @@
   This is a serversComponent
 </p>
 
-<app-server></app-server>
+<!-- <app-server></app-server>
+<app-server></app-server> -->
 
+<app-server *ngFor="let server of servers"></app-server>
+
+<p>
+    This is using <b>string interpolation</b> to output data. 
+    Use this when you want to print some text to the template.
+</p>
