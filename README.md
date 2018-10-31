@@ -1,1 +1,1 @@
-* Just a website I mess with..
+* Just a website I learn frontend for
